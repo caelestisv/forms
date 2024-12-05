@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="f1">
+        <input type="button" value="press" id="btn">
+        <input type="text" id="txt1">
+
+        <p><input type="button" value="block" id="block">
+        <input type="button" value="unlock" id="unlock">
+        <input type="text" id="txt2"></p>
+    </form>
+
+    <form action="" id="f2">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+        <p>
+            <input type="checkbox" checked>
+            <input type="text">
+        </p>
+    </form>
+   <script>
+    document.getElementById("btn").onclick=function(){
+        if(confirm()){
+            document.getElementById("txt1").value = "text";
+        }
+        else{
+            document.getElementById("f1").reset();
+        }
+    }
+
+    document.getElementById("block").onclick=function(){
+        document.getElementById("txt2").disabled=true;
+    }
+    document.getElementById("unlock").onclick=function(){
+        document.getElementById("txt2").disabled=false;
+    }
+
+    let elems = document.getElementById("f2").querySelectorAll("input[type=text]");
+    for(let i=0; i<elems.length; i++){
+        elems[i].onmouseover=function(){
+            elems[i].focus();
+            elems[i].value=elems[i].type;
+        }
+        elems[i].onmouseout=function(){
+            elems[i].blur();
+            elems[i].value="";
+        }
+    }
+
+    let checks=document.getElementById("f2").querySelectorAll("input[type=checkbox]");
+    for(let i=0; i<checks.length; i++){
+        checks[i].onclick=function(){
+            checks[i].nextElementSibling.hidden=!checks[i].checked;
+        }
+    }
+
+   </script>
+</body>
+</html>
